@@ -31,10 +31,15 @@ async def help(ctx):
 # kick
 @bot.command(pass_context = True)
 @commands.has_any_role("Bot Father")
-async def kick(ctx, member: discord.Member, nick, *, reason = None):
+async def kick(ctx, member: discord.Member, *, reason = None):
     await ctx.channel.purge(limit = 1)
     await member.kick(reason=reason)
-    await ctx.send(f'Лось под именем "**{nick}**" кикнут с сервера')
+    emb = discord.Embed(title = '! kick', colour=discord.Color.blue())
+
+    emb.set_author(name = bot.user.name, icon_url = bot.user.avatar_url)
+    emb.add_field(name= 'Кикнут участник', value='Кикнут Лось под именем {}'.format(member.mention) + ' И это не только из-за АХАХАХА, у нас нормальный отбор.')
+
+    await ctx.send(embed = emb)
 
 # ban
 @bot.command(pass_context = True)
@@ -42,13 +47,20 @@ async def kick(ctx, member: discord.Member, nick, *, reason = None):
 async def ban(ctx, member : discord.Member, nick, *, reason=None):
     await ctx.channel.purge(limit = 1)
     await member.ban(reason=reason)
-    await ctx.send(f'Лось под именем "**{nick}**" забанен на неопределенный срок')
+    
+    emb = discord.Embed(title = '! ban', colour=discord.Color.blue())
+
+    emb.set_author(name = bot.user.name, icon_url = bot.user.avatar_url)
+    emb.add_field(name = 'Смена Ника', value= 'Лось под именем {}'.format(member.mention) + ' забанен. Такие дела.')
+    emb.set_footer(text= 'command by ' + ctx.author.name, icon_url= ctx.author.avatar_url)
+
+    await ctx.send(embed = emb)
 
 # unban
 @bot.command(pass_context = True)
 @commands.has_any_role('Bot Father')
 async def unban(ctx, nick):
-    emb = discord.Embed(title = 'Разбан!', colour=discord.Color.blue())
+    emb = discord.Embed(title = '! unban', colour=discord.Color.blue())
 
     emb.set_author(name = bot.user.name, icon_url = bot.user.avatar_url)
     emb.set_footer(text= 'command by ' + ctx.author.name, icon_url= ctx.author.avatar_url)
@@ -60,7 +72,14 @@ async def unban(ctx, nick):
 async def nick(ctx, member: discord.Member, nick):
     await ctx.channel.purge(limit = 1)
     await member.edit(nick=nick)
-    await ctx.send(f'Никнейм был изменён для пользователя {member.mention} ')
+
+    emb = discord.Embed(title = '! nick', colour=discord.Color.blue())
+
+    emb.set_author(name = bot.user.name, icon_url = bot.user.avatar_url)
+    emb.add_field(name = 'Смена Ника', value= 'Ник пользователя {}'.format(member.mention) + ' сменён. Нахуя вам эта инфа? Не знаю, просто мне нравится всё бесполезное.')
+    emb.set_footer(text= 'command by ' + ctx.author.name, icon_url= ctx.author.avatar_url)
+
+    await ctx.send(embed = emb)
 
 
 
