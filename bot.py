@@ -76,7 +76,7 @@ async def nick(ctx, member: discord.Member, nick):
     emb = discord.Embed(title = '! nick', colour=discord.Color.blue())
 
     emb.set_author(name = bot.user.name, icon_url = bot.user.avatar_url)
-    emb.add_field(name = 'Смена Ника', value= 'Ник пользователя {}'.format(member.mention) + ' сменён. Нахуя вам эта инфа? Не знаю, просто мне нравится всё бесполезное.')
+    emb.add_field(name = 'Смена Ника', value= 'Ник пользователя {}'.format(member.mention) + ' сменён. Зачем вам эта информация? Не знаю, просто мне нравится всё бесполезное.')
     emb.set_footer(text= 'command by ' + ctx.author.name, icon_url= ctx.author.avatar_url)
 
     await ctx.send(embed = emb)
